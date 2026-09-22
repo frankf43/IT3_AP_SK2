@@ -1,3 +1,5 @@
+import random
+
 class Zvire:
     def __init__(self, jmeno:str, vek:int, misto:str = "bouda"):
         self.jmeno = jmeno
@@ -17,6 +19,34 @@ class Zvire:
     def jdiNa(self, nMisto:str):
         self.misto = nMisto
         return f"Přesunul jsem se na {nMisto}"
+    
+class Pes(Zvire):
+    def __init__(self, jmeno, vek, plemeno, misto = "bouda"):
+        super().__init__(jmeno, vek, misto)
+        self.plemeno = plemeno
+
+    def zvuk(self):
+        return "Haf, haf!"
+    
+    def aport(self):
+        return f"{self.jmeno} přinesl míček!"
+    
+    def vycesat(self):
+        if(random.randint(0,1) > 0):
+            return f"{self.jmeno} utekl před tvým kartáčem!"
+        else:
+            return f"{self.jmeno} se nechal vyčesat!"
+    
+    
+
+radegast = Pes("Radegast", 2, "Australský ovčák", "gauč")
+print(radegast.jmeno)
+print(radegast.plemeno)
+print(radegast.kdeJsi())
+print(radegast.zvuk())
+print(radegast.aport())
+print(radegast.vycesat())
+print("-" * 20)
 
 
 zvire = Zvire("Šoral",50)
