@@ -37,8 +37,56 @@ class Pes(Zvire):
         else:
             return f"{self.jmeno} se nechal vyčesat!"
     
+    def predstavSe(self):
+        return f"{super().predstavSe()} jsem {self.plemeno}"
     
+class Kocka(Zvire):
+    def __init__(self, jmeno, vek, barva, misto = "bouda"):
+        super().__init__(jmeno, vek, misto)
+        self.barva = barva
+    
+    def zvuk(self):
+        return "Mňau, mňau!"
+    
+    def utok(self):
+        return f"Kočka {self.jmeno} tě naštvaně poškrábala!"
 
+    def pohladit(self):
+        if(random.randint(0,1) > 0):
+            return self.utok()
+        else:
+            return f"{self.jmeno} se nechala pohladit a spokojeně přede!"
+
+class Had(Zvire):
+    def __init__(self, jmeno, vek, delkaCm: int, jedovaty:bool, misto = "terárium"):
+        super().__init__(jmeno, vek, misto)
+        self.delkaCm = delkaCm
+        self.jedovaty = jedovaty
+    
+    def zvuk(self):
+        return "Ssssss"
+    
+    def predstavSe(self):
+        if self.jedovaty:
+            typ = "jedovatý"
+        else:
+            typ = "škrtič"
+        return f"Ssssss... já jsem {self.jmeno}, měřím {self.delkaCm} cm a jsem {typ}"
+
+betka = Had("Bětka", 8, 250, False)
+print(betka.predstavSe())
+
+micka = Kocka("Micka", 3, "zrzavou", "košíček")
+print(micka.jmeno)
+print(micka.barva)
+print(micka.kdeJsi())
+print(micka.zvuk())
+print(micka.utok())
+print(micka.pohladit())
+print(micka.predstavSe())
+print(micka.jdiNa("parapet okna"))
+print("-" * 20)
+    
 radegast = Pes("Radegast", 2, "Australský ovčák", "gauč")
 print(radegast.jmeno)
 print(radegast.plemeno)
@@ -46,8 +94,8 @@ print(radegast.kdeJsi())
 print(radegast.zvuk())
 print(radegast.aport())
 print(radegast.vycesat())
+print(radegast.predstavSe())
 print("-" * 20)
-
 
 zvire = Zvire("Šoral",50)
 print(zvire.jmeno)
@@ -65,3 +113,9 @@ print(zvire2.predstavSe())
 print(zvire2.kdeJsi())
 print(zvire2.jdiNa("Klokánek"))
 print(zvire2.kdeJsi())
+
+zoo = [radegast, micka, betka]
+
+for obyvatel in zoo:
+    print(obyvatel.predstavSe())
+    print("-" * 20)
